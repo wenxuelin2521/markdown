@@ -100,11 +100,11 @@ mvvm模式就是view 、viewModel、model
 
 函数原型链：
 
-<img src="/Users/lin/workspace/博客/summary-img/函数的原型链.png" alt="函数的原型链"  />
+<img src="./img/函数的原型链.png" alt="函数的原型链"  />
 
 完整的原型链
 
-![完整的原型链](/Users/lin/workspace/博客/summary-img/完整的原型链.png)
+![完整的原型链](./img/完整的原型链.png)
 
 # 6、异步async/await promise
 
@@ -414,7 +414,7 @@ export default {
 </script>
 ```
 
-![判断是否失去双向绑定](/Users/lin/workspace/博客/summary-img/判断是否失去双向绑定.png)
+![判断是否失去双向绑定](./img/判断是否失去双向绑定.png)
 
 
 
@@ -745,7 +745,7 @@ hash值改变会触发haschange事件，浏览器的前进后退也能对其控�
 
 利用html5新增的两个api：pushState()和replaceState()。通过这两个api完成url跳转不会重新加载页面，同时history模式解决了hash模式存在的问题，hash的传参是基于url的，如果要传递复杂的数据，会有体积限制，而history模式不仅可以在url上传参，也可以将数据存放到一个特定的对象中。
 
-<img src="/Users/lin/workspace/博客/summary-img/vuerouterl两种模式实现.png" alt="vuerouterl两种模式实现" style="zoom:50%;" />
+<img src="./img/vuerouterl两种模式实现.png" alt="vuerouterl两种模式实现" style="zoom:50%;" />
 
 总结参考：https://github.com/noobalex/lanbitou/issues/12
 
