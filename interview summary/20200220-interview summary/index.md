@@ -50,7 +50,25 @@ teacher.teach.call(doctor, '医学', 20) //i am a doctor,我的专业是医学, 
 teacher.teach.apply(doctor, ['医学', 20])//i am a doctor,我的专业是医学, 我有20年经验
 teacher.teach.bind(doctor, '医学', 20)()//i am a doctor,我的专业是医学, 我有20年经验
 ```
+模拟实现一个call方法
+```js
+// 使用ES6语法实现一个call
+Function.prototype._call = function () {
+    let context = arguments[0];
+    context.fn = this;
 
+    let args = [];
+    for (let i = 0, len = arguments.length; i < len; i++) {
+        args.push(arguments[i]);
+    }
+
+    // 把数组转换为一个伪数组
+    let res = context.fn({ ...args });
+
+    delete context.fn;
+    return res;
+}
+```
 # 6.promise、setTimeout、async/await的执行顺序
 js中的宏任务一般是：包括整体代码script,setTimeout,setInterval;
 微任务是： Promise,process.nextTick;
