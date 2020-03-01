@@ -218,3 +218,75 @@ var b = new A()
 console.log(a instanceof A)
 console.log(b instanceof A)
 ```
+
+# 10.变量的解构赋值
+
+- 数组的结构赋值
+数组中提取值，按照对应的位置，对变量赋值
+如果结构不成功，变量的值就等于undefined
+解构赋值允许指定默认值，如果默认值是一个表达式，那么这个表达式是惰性求值的，即只有在用到的时候，才会求值
+
+- 对象的结构赋值
+```js
+// 变量名与属性名不一致，必须写成以下形式
+let {foo:baz} = {foo:'aaa' , bar:'bbb'} // baz的值为'aaa'
+```
+
+- 用途
+    + 交换变量的值
+    + 从函数返回多个值
+    + 函数参数的定义
+    + 提取JSON数据
+    + 函数参数的默认值
+    + 遍历Map结构
+    + 输入模块的指定方法
+
+
+# 11.闭包问题
+循环中赋值为引用的问题
+```js
+for (var i = 1; i < 5; i++) {
+  setTimeout(function timer() {
+    console.log(i)
+  }, i * 1000)
+}
+```
+解决方法：
+```js
+// 方法一：使用立即执行函数
+for(var i = 1 ; i < 5 ; i++){
+    (function(j){
+        setTimeout(function timer(){
+            console.log(j)
+        } , j * 1000)
+    })(i)
+}
+// 方法二：使用ES6中的let：块级作用域
+for(let i = 1 ; i < 5 ; i++){
+    setTimeout(function timer(){
+        console.log(i)
+    } , i * 1000)
+}
+// 方法三：使用setTimeout的第三个参数：定时器启动的时候，第三个及以后的参数是作为第一个函数的参数传入进去
+for(vari= 0 ； i < 5 ; i++){
+    setTimeout((j) => {
+        console.log(j);
+    } , i * 1000 , i)
+}
+```
+# 12.跨域通信的几种方式
+- jsonp
+- hash
+- postMessage(html5新增)
+- websocket
+- cors
+支持跨域通信版本的Ajax，是一种新的标准（Origin头）【ajax的一个变种，适用于任何】
+
+
+# 13.http状态码
+- 状态码的第一位
+    + 1xx：指示信息-表示请求已经接受，继续处理
+    + 2xx：表示请求已被成功接收
+    + 3xx：重定向，要完成请求必须进行更进一步操作
+    + 4xx：客户端错误，请求有语法错误或请求无法实现
+    + 5xx：服务器错误，服务器未能实现合法的请求
