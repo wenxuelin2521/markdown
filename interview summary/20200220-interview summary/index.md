@@ -290,3 +290,31 @@ for(vari= 0 ； i < 5 ; i++){
     + 3xx：重定向，要完成请求必须进行更进一步操作
     + 4xx：客户端错误，请求有语法错误或请求无法实现
     + 5xx：服务器错误，服务器未能实现合法的请求
+
+# 14.使用css实现一个上/下/左/右三角形
+```css
+.box1{
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-top: 50px solid #000; /*上*/
+}
+.box2{
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-bottom: 50px solid #000;/*下*/
+}
+.box3{
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-left: 50px solid #000;/*左*/
+}
+.box4{
+    width: 0;
+    height: 0;
+    border: 50px solid transparent;
+    border-right: 50px solid #000;/*右*/
+}
+```
