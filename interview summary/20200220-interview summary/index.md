@@ -336,7 +336,7 @@ JS是没有块级作用域的，只有函数和全局作用域
 # 18. === 和 ==
 - ==判断数值；===判断类型
 - ==的类型转换规则：
-    + 如果等号两边是boolean\string\number三者中的任意两者进行比较，有限转换为数字进行比较
+    + 如果等号两边是boolean\string\number三者中的任意两者进行比较，优先转换为数字进行比较
     + 如果等号两边出现了null或者undefined，null和undefined除了和自己相等，就彼此相等
 
 # 19. vue深度作用选择器 >>> 与 /deep/
@@ -352,3 +352,45 @@ JS是没有块级作用域的，只有函数和全局作用域
 - 已知宽高：子绝父相，top/left：50%，margin-top/margin-left：自身一半
 - 未知宽高：top/left：50%，transform:translate(-50% , -50%)
 - 弹性：display:flex;justify-content:center;align-items:center;
+
+# 21. keep-alive
+- `keep-alive`是vue的内置组件，能在组件切换过程中保留在内存中，防止重复渲染dom
+- `keep-alive`包裹动态组件时，会缓存不活动的组件实例，而不是销毁他们
+- 被`keep-alive`包含的组件不会再被初始化，也意味着不会重走声明周期函数，但是有时候我们希望缓存的组件可以再次进行渲染，这是就会多出两个声明周期钩子，`activated`与`deactivated`钩子函数
+
+# 22.访问一个url在代码里面怎么区分他是移动端还是pc端
+使用Navigator对象的`Navigator.userAgent`
+```js
+window.location.href = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent) ? "https://www.baidu.com/" :  "http://news.baidu.com/";
+```
+
+# 23.javascript中的作用域
+- 全局作用域
+- 函数作用域：函数内部定义的变量，在函数内部可以随便使用。如果跳出来则不能够进行使用了
+- 块级作用域：let/const定义的变量，一个代码块内（花括号内）能够使用，而跳出这个代码块将不能使用
+
+# 24.webpack打包流程
+- 初始化参数
+- 开始编译，用上一步得到的参数初始化Compiler对象，加载所有配置的插件，通过执行对象的run方法开始执行编译
+- 确定入口：根据配置中的entry找出所有的入口
+- 编译模块，从入口文件出发，调用所有配置的loader对模块进行编译
+- 完成模块编译，经过loader翻译后，得到每一个模块编译后的内容和他们之间的依赖关系
+- 输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的chunk
+- 输出完成，根据配置确定的路径和文件名写入系统中
+
+# 25.移动端和pc端的适配
+- pc端：媒体查询
+- 移动端：
+（1）rem
+（2）rem + viewport （淘宝的适配方案flexible）
+
+# 26.移动端如何实现一条1px的边框
+- 伪类 + transform scale(0.5)。为什么是一半？每一台设备的设备像素比dpr（设备上的物理像素/独立像素）都不一样，但是0.5普遍满足设计师的要求。
+
+# 27.移动端如何做真机调试
+- 安卓：通过USB数据线，将Android手机连接到电脑上，手机用Chrome浏览器打开页面，电脑上也打开Chrome，输入chrome://inspect/ ，进入调试模式，这个时候就能调试页面啦
+- ios：打开iPhone手机设置设置 -> Safari -> 高级 -> 打开Web检查器，然后通过数据线将iPhone连接到Mac，电脑和手机同时打开Safari，电脑上Safari打开 开发-iPhone
+
+# 28.怎么实现闭包
+- 在函数内部返回一个函数
+
