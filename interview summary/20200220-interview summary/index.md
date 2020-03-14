@@ -394,3 +394,32 @@ window.location.href = /Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.us
 # 28.怎么实现闭包
 - 在函数内部返回一个函数
 
+# 29.promise
+- promise.all和promise.race
+promise.all:将多个promise实例包装成一个新的promise实例。成功的时候返回一个是结果的数组，失败的时候则返回最先被reject失败状态的值
+promise.race:`Promise.race([p1,p2,p3...])`里面哪个结果获取的最快，就返回哪个结果，不管成功还是失败
+- 错误处理：使用.catch
+
+# 30.async/await
+- 跟promise的区别：async/await是generator的语法糖
+- 错误处理：使用`try catch` 或者 `await 后面接.catch`；整个函数的的错误可以在返回的promise对象中使用`.catch`
+
+# 31.http强缓存和协商缓存
+http缓存机制主要在http响应头中设定，响应头中相关字段为expires/cache-control-last-modified/etag 
+- 强缓存：浏览器不会像服务器发送任何请求，直接从本地缓存中读取文件并返回statuscode:200ok
+
+
+- 协商缓存：向服务器发送请求，服务器会根据这个请求的请求头的一些参数来判断是否命中协商缓存，如果命中，则返回304状态码并带上新的响应头通知浏览器从缓存中读取资源
+
+
+来源：https://juejin.im/post/5ccfccaff265da03ab233bf5
+
+
+# 32.箭头函数和普通函数的区别 
+- 不能作为构造函数：箭头函数属于匿名函数，是不能作为构造函数的，不能使用new
+- 箭头函数没有arguments，取而代之用rest参数解决
+- 箭头函数没有自己的this，函数中的this会指向上下文的this值
+- this不可以被修改,使用apply , call , bind等方法时候，对this并没有影响
+- 箭头函数没有原型属性
+
+# 33.如何提高webpack构建速度
