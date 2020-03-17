@@ -423,3 +423,67 @@ http缓存机制主要在http响应头中设定，响应头中相关字段为exp
 - 箭头函数没有原型属性
 
 # 33.如何提高webpack构建速度
+（1）多入口情况下，使用CommonsChunkPlugin来提取公共代码
+（2）通过externals配置来提取常用库
+（3）利用DllPlugin和DllReferencePlugin预编译资源模块，通过DllPlugin来对那些我们引用但是绝对不会修改的npm包来进行预编译，在通过DllReferencePlugin将预编译的模块加载进来
+（4）使用Happypack实现多线程加速编译
+（5）使用webpack-ugligy-parallel来提升ugligyPlugin的压缩速度。原理上webpack-ugligy-parallel采用了多喝并行压缩来提升压缩速度
+（6）使用tree-shaking和scope hoistiong来剔除多余代码
+
+- 更多关于webpack:https://zhuanlan.zhihu.com/p/44438844
+
+# 34.前端内存泄露问题
+- 内存泄露：应用程序不需要占用内存的时候，由于某些原因，内存没有被操作系统回收或者内存池回收。
+- 常见的javascript内存泄露
+
+（1）意外的全局变量
+比如在函数里面给一个没有声明的变量赋值，或者在函数中使用this赋值，然后直接调用，相当于创建了一个全局变量。这种可以通过`use strict`严格模式，避免意外的全局变量。全局变量存储大量数据时候，确保用完以后把他设置成null或者重新定义。
+
+（2）被遗忘的计时器或回调函数
+在js中使用`setInterval`，如果计时器不停止，那么就不会被回收
+```js
+for (var i = 0; i < 90000; i++) {
+  var buggyObject = {
+    callAgain: function() {
+      var ref = this;
+      var val = setTimeout(function() {
+        ref.callAgain();
+      }, 90000);
+    }
+  }  
+   buggyObject.callAgain();
+  //虽然你想回收但是timer还在
+  buggyObject = null;
+}
+```
+
+（3）dom泄露
+当原有的com被移除时，子节点引用没有被移除则无法回收
+```js
+var treeRef = document.querySelector('#tree');  
+//在COM树中leafRef是treeFre的一个子结点
+var leafRef = document.querySelector('#leaf');  
+var body = document.querySelector('body'); 
+body.removeChild(treeRef); 
+//#tree不能被回收入，因为treeRef还在
+//解决方法:
+treeRef = null; 
+//tree还不能被回收，因为叶子结果leafRef还在
+leafRef = null; 
+//现在#tree可以被释放了。
+```
+
+（4）闭包
+在闭包中引入闭包外部变量时候，当闭包结束的时候此对象无法被垃圾回收
+```js
+var a = function() {
+  var largeStr = new Array(1000000).join('x');
+  return function() {
+    return largeStr;
+  }
+}();
+```
+
+- 调试内存
+chorme开发者工具 -> timeline -> menory 点击record
+
