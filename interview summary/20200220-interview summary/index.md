@@ -487,3 +487,11 @@ var a = function() {
 - 调试内存
 chorme开发者工具 -> timeline -> menory 点击record
 
+
+
+# 35.vuex有哪些属性
+- store：状态管理值
+- getter： store的派生值，相当于计算属性
+- mutation：修改state方法（同步），外部通过store.commit修改
+- action：修改state方法（异步），外部通过store.dispatch修改
+- module：store模块化
