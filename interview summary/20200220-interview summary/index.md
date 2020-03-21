@@ -495,3 +495,11 @@ chorme开发者工具 -> timeline -> menory 点击record
 - mutation：修改state方法（同步），外部通过store.commit修改
 - action：修改state方法（异步），外部通过store.dispatch修改
 - module：store模块化
+
+# 36.数组api的[1,3,11,2].sort()
+
+# 37.数组去重的方法
+
+# 38.$attr和$listener
+
+# 39.Object.create()
