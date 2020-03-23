@@ -22,7 +22,7 @@ W3C标准盒子模型：width = content
 
 
 
-# 3、BFC 规范理解）块格式化上下文（block formatting context）
+# 3、BFC 规范理解块格式化上下文（block formatting context）
 
 特性(功能)：
 
