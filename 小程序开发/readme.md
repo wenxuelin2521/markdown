@@ -42,7 +42,12 @@
 
 # 五、微信开发工具介绍
 
-[工具详细介绍]: https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html
+- [工具详细介绍]: https://developers.weixin.qq.com/miniprogram/dev/devtools/devtools.html
 
 <img src="./img/工具介绍.png" alt="开发工具介绍" style="zoom:100%;">
 
+- app.json配置简单介绍
+<img src="./img/app.json配置简单介绍.png" alt="app.json配置" style="zoom:100%;">
+
+- 项目配置文件project.config.json介绍
+[详细介绍]: https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html
