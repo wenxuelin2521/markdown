@@ -6,3 +6,13 @@
 [官网]: https://developers.weixin.qq.com/miniprogram/dev/framework/MINA.html
 
 
+## 小程序文件结构与传统web开发作对比
+
+| 结构 | 传统web | mina小程序 |
+| ---- | ------- | ---------- |
+| 结构 | html    | wxml       |
+| 样式 | css     | wxss       |
+| 逻辑 | js      | js         |
+| 配置 | 无      | json       |
+
+<img src="./img/mina小程序文件结构.png" alt="小程序文件结构" style="zoom:50%;">
