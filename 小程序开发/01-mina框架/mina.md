@@ -16,3 +16,7 @@
 | 配置 | 无      | json       |
 
 <img src="./img/mina小程序文件结构.png" alt="小程序文件结构" style="zoom:50%;">
+
+
+## 配置介绍
+一个小程序应用程序会包括最基本的两种配置文件。一种是全局的 `app.json` 和 页面自己的 `page.json`
