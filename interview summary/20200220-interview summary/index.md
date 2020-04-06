@@ -581,3 +581,40 @@ mounted() {
     this.$emit('test2','哈哈');
 }
 ```
+
+# 42.组件中的data为什么是函数
+因为组件可能被多处使用，但它们的data是私有的，所以每个组件都要return一个新的data对象，如果共享data，修改其中一个会影响其他组件
+
+# 43.vue组件通讯方式补充`event bus`简单应用
+```js
+// 入口函数中创建一个新的vue实例
+var EventBus = new Vue();
+
+Object.defineProperties(Vue.prototype, {
+    $bus: {
+        get: function () {
+            return EventBus
+        }
+    }
+})
+```
+```js
+// 发送组件
+test2(){
+  this.$bus.$emit("updateMessage", [1,2 , Math.random()])
+}
+```
+```js
+// 接收组件
+created() {
+    this.$bus.$on("updateMessage", (value) => {
+        this.postMsg = value  // 赋值给data中的属性，然后通过watch属性即可
+    });
+},
+// 销毁
+beforeDestroy() {
+    this.$bus.$off("updateMessage");
+}
+```
+
+
