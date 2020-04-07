@@ -739,7 +739,7 @@ vue-router需要满足两个需求：
 
 hash表示地址栏url中的**#**符号，hash会出现在url中但是不会被包含在http请求中，因此改变hash值不会重新加载页面。
 
-hash值改变会触发haschange事件，浏览器的前进后退也能对其控制。所以在html5之前，基本都是使用hash值来实现前端路由。
+hash值改变会触发hashchange事件，浏览器的前进后退也能对其控制。所以在html5之前，基本都是使用hash值来实现前端路由。
 
 
 
