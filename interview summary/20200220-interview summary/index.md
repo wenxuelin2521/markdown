@@ -215,8 +215,8 @@ A.prototype = {}
 var a = new A()
 A.prototype = {}
 var b = new A()
-console.log(a instanceof A)
-console.log(b instanceof A)
+console.log(a instanceof A) // false
+console.log(b instanceof A) // true
 ```
 
 # 10.变量的解构赋值
