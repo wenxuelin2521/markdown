@@ -1,4 +1,8 @@
 # Angular
+Angular版本说明：
+- AngularJS --> v1.x
+- Angular   --> v2.x及其以上版本
+- 编写该文档的时候使用的 Angular v9.x 最新
 
 ## Angular CLI    
 
