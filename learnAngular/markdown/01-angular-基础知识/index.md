@@ -45,6 +45,10 @@ Angular应用是模块化的。拥有自己的模块系统，称作**NgModule**�
 - providers：使用的服务
 - bootstrap：应用视图的根模块，只有根模块才设置`bootstrap`属性
 
+注：
+
+装饰器是一个函数，作用是修饰紧随其后的类或者属性。装饰器是JavaScript的一种语言特性，处于语法提案的stage2阶段，是一个试验特性
+
 ### 模块与组件
 模块为组件提供了一个**编译上下文环境**，模块总会有一个根组件，任何模块都能包含任意数量的的其他组件
 
@@ -127,12 +131,12 @@ index.html页面中添加`<base-href="/">`
 
 3. 配置路由
 ```ts
-// 引入组件
+// step1:引入组件
 import { AppHomeComponent } from './app-home/app-home.component'
 import { AppAboutComponent } from './app-about/app-about.component'
-// 引入路由
+// step2:引入路由模块
 import { RouterModule, Routes } from '@angular/router';
-// 定义路由
+// step3:定义路由，配置路由规则
 const appRoutes: Routes = [
   { path : '/home' , component : AppHomeComponent} , 
   { path : '/about' , component : AppAboutComponent}
@@ -157,9 +161,30 @@ const appRoutes: Routes = [
 })
 ```
 ```html
+<!-- step4:指定路由出口 -->
+<router-outlet></router-outlet>
 
+<!-- step5:指定路由的导航链接 -->
+<a routerLink="/home">跳转</a>
 ```
+```ts
+// 编程式导航实现跳转
+// 导入路由提供的服务
+import { Router } from '@/angular/router'img
+@Component({
+  selector:'...',
+  templateUrl:'...',
+  styleUrls:['...' , '...']
+})
 
+export class NotFound implements OnInit{
+  constructor(private router : Router){}
+  // ...
+  ngOnInit(){
+    this.router.navigate(['/home'])
+  }
+}
+```
 ## HttpClient
 
 
