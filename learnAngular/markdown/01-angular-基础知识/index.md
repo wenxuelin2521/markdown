@@ -198,10 +198,13 @@ export class Parent {
 */
 
 // 子组件中通过@Input()修饰器公开属性
+import { Component, OnInit, Output, EventEmitter } from '@angular/core'
+
 export class Child {
   constructor(){}
 
   // 公开属性
+  @Input()
   skill
 
   // do something else ...
@@ -216,6 +219,33 @@ export class Child {
 ```
 
 ### 子组件传递数据给父组件
+子组件中创建事件，父组件中提供方法，并且绑定在子组件中，由子组件触发事件，并且将参数传递给方法
+```ts
+// 子组件中创建事件，使用@Output来修饰
+export class Child {
+  constuctor(){}
+  // step 1
+  @Output()
+  getData = new EventEmitter()
+
+}
+
+// 父组件中定义方法
+export class Parent {
+  // step 2
+  queryData(data) {
+    console.log("从子组件中拿到的数据" ,data)
+  }
+}
+/* step 3 在父组件模板中绑定事件
+<app-child (getData)="queryData($event)"></app-child>
+*/
+
+// 子组件中触发事件，传递参数
+this.getData.emit('hello world~~~')
+
+```
+
 
 ## HttpClient
 
