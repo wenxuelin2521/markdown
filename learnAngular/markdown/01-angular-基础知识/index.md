@@ -185,6 +185,38 @@ export class NotFound implements OnInit{
   }
 }
 ```
+## 组件的交互
+### 父组件传递数据给子组件
+
+```ts
+// 父组件中定义数据，并且在模板中通过属性绑定值，传递给父组件
+export class Parent {
+  parentData = "我是父亲"
+}
+/* 父组件的模板
+<app-child [skill] = "parentData"></app-child>
+*/
+
+// 子组件中通过@Input()修饰器公开属性
+export class Child {
+  constructor(){}
+
+  // 公开属性
+  skill
+
+  // do something else ...
+}
+
+/* 子组件的模板
+
+<p>子组件中接收到的数据：{{skill}}</p>
+
+*/
+
+```
+
+### 子组件传递数据给父组件
+
 ## HttpClient
 
 
