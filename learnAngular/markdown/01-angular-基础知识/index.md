@@ -116,6 +116,42 @@ Angular中定义了**服务类**，服务为组件提供处理问题的更明确
 `@Injectable()`接收的也是一个对象，其中
 - providedIn：说明服务的提供者，root表示注册在根，这样可以让它随处可用。也可以为特定的的模块或者组件注册提供者。
 
+## 使用说明
+1. 通过`@Inject()`装饰器来表示一个服务
+2. 服务需要提供注册商才可以使用
+3. Angular通过依赖注入来为组件提供服务
+4. 依赖注入在使用服务的时候，只需要提供服务就可以了。不需要手动创建服务实例
+5. 推荐在constructor中提供组件使用到的服务
+```js
+/*服务定义*/ 
+import { Injectable } from '@angular/core'
+@Injectable({
+  providedIn: 'root'
+})
+export class MyService {
+  constructor() {}
+  doSomething(){
+    console.log("do something")
+  }
+}
+
+/*组件中使用*/
+import {MyService} from '../service'
+@Component({
+  selector: "...",
+  templateUrl: "...",
+  styleUrls: "...",
+})
+export class MyCom implements OnInit{
+  construncto(private services : MyService){}
+  ngOnInit(){
+    this.serrvices.doSomething()
+  }
+}
+
+```
+
+
 ## 路由
 Angular中的路由是使用HTML5的`history.pushState()`和`history.replaceState()`来实现。
 浏览器的三种导航：
