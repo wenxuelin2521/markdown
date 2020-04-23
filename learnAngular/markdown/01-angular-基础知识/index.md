@@ -123,7 +123,7 @@ Angular中的路由是使用HTML5的`history.pushState()`和`history.replaceStat
 - 在页面中点击链接
 - 浏览器的前进，后退按钮
 
-### 基本知识
+### 基本概念
 1. `<base href>`元素
 index.html页面中添加`<base-href="/">`
 
@@ -247,7 +247,22 @@ this.getData.emit('hello world~~~')
 ```
 
 
-## HttpClient
+## 指令
+使用过的指令：
+`[(ngModel)]`：在表单元素中实现双向数据绑定
+`(click)`：事件绑定指令
+`[href]`：属性绑定指令
+
+指令的分类：
+- 组件：拥有模板的指令
+- 属性型指令：改变元素外观和行为。such as :`[ngClass]`和`[ngStyle]`
+- 结构型指令：添加或者移除dom元素改变dom布局的指令。such as：`*ngIf`和`*ngFor`，`*ngFor`可以添加trackBy方法，目的是提高渲染对象数组的性能。（类似于vue的key）
+
+自定义指令：
+```js
+// to be continue
+```
+
 
 
 
