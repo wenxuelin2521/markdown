@@ -341,12 +341,74 @@ this.getData.emit('hello world~~~')
 ```
 
 ## HttpClient
+- 作用：发送Http请求
+- 封装了浏览器提供的XMLHttpRequest接口
+- 使用基于可观察（Observeable）对象的API
+- 提供了请求和响应拦截
+- 流式错误处理机制等
+```ts
+// 1. 在模块中导入HttpClient模块，并且注册。
+// 如: app.module.ts
+import { HttpClientModule } from '@/angular/common/http'
+// ...else code
+// 注册
+@NgModule({
+  declarations: [AppComponent],
+  imports: [BrowserModule, HttpClientModule],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+
+// 2. 组件中使用 如： app.component.ts
+// 先导入
+import { HttpClient } from '@angular/common/http'
+// 挂到组件中
+export class AppComponent{
+  constructor(private http : HttpClient)
+
+  getData() {
+    // 发送get请求
+    this.http.get('../assets/test.json').subscribe((res: any) => {
+      // console.log(res)
+      this.name = res.name
+    })
+  }
+
+}
+
+
+```
+
 
 ## forRoot说明
+- 问题说明：服务应该是单实例，在某些场景下会造成服务/模块多次注册，破坏服务单例性，比如路由懒加载
+- 解决方式：使用模块的forRoot()方法导入模块
+- 比如：RouterModule的forRoot()保证项目中只有一个Router服务
+```ts
+// 1 导入路由模块
+import { RouterModule, Routes } from '@angular/router'
+
+// 2 配置路由规则
+const appRoutes: Routes = [
+  {
+    path: '',
+    component: HomeComponent
+  }
+]
+@NgModule({
+  declarations: [AppComponent, HomeComponent],
+  // 3 配置路由模块，作为根模块的依赖项
+  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+
+```
 
 ## 表单
+### 模板驱动表单（基于模板语法`[{ngModel}]`）
 ### 响应式表单
 
-### 模板驱动表单（基于模板语法`[{ngModel}]`）
 
 
