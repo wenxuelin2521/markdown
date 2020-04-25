@@ -175,7 +175,13 @@ import { RouterModule, Routes } from '@angular/router';
 // step3:定义路由，配置路由规则
 const appRoutes: Routes = [
   { path : '/home' , component : AppHomeComponent} , 
-  { path : '/about' , component : AppAboutComponent}
+  { path : '/about' , component : AppAboutComponent},
+  // 通配符路由
+  // 注意：通配符路由应该出现在路由规则最后。
+  {
+    path:'**',
+    component:NotfoundComponent
+  }
 ];
 // 模块声明
 @NgModule({
@@ -221,6 +227,41 @@ export class NotFound implements OnInit{
   }
 }
 ```
+4. 路由参数和子路由
+```ts
+// 1 导入路由模块
+import { RouterModule, Routes } from '@angular/router'
+// 2. 配置路由
+const appRoutes:Routes = [
+  {path : '' , redirectTo : '/home', pathMatch:'full'}, // 重定向路由 , 全配对
+  {path : 'home' , component : Homeponent},
+  {path : 'about/:id' , Component : About}, // id表示路由参数，可以匹配路由： /about/1, / about/2 ...
+  {
+    path : 'info' ,
+    component:Info,
+    children:[
+      {path : 'national' , component : National} , // 子路由配置，如果path为空则立即展示该组件
+    ]
+  }
+]
+// 在模板中获取
+// 1. 导入路由服务
+import {ActiveRoute} from '@angular/router'
+// ...
+export class About implements OnInit {
+  constructor (private route : ActivedRoute){}
+  ngOnInit(){
+    // *****使用*****
+    this.route.paramMap.subscribe(param => {
+      console.log('路由参数为' , param)
+    })
+  }
+}
+
+
+```
+
+
 ## 组件的交互
 ### 父组件传递数据给子组件
 
@@ -299,6 +340,13 @@ this.getData.emit('hello world~~~')
 // to be continue
 ```
 
+## HttpClient
 
+## forRoot说明
+
+## 表单
+### 响应式表单
+
+### 模板驱动表单（基于模板语法`[{ngModel}]`）
 
 
