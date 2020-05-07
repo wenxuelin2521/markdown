@@ -409,6 +409,40 @@ const appRoutes: Routes = [
 ## 表单
 ### 模板驱动表单（基于模板语法`[{ngModel}]`）
 ### 响应式表单
+```ts
+// 1.在 module中导入响应式表单模块
+import {ReactiveFformsModule} from '@angular/forms'
+// 2.配置为当前模块的依赖项
+@NgModule({
+  declarations:[AppComponent],
+  imports:[BrowserModule,ReactiveFformsModule],
+  //...
+})
 
+// 3.在组件中导入表单控件
+import { Component } from '@angular/core'
+import {FormControl} from '@angular/forms'
+export class AppComponent {
+  username = new FormControl('123')
+  password = new FormControl('')
+
+  // 获取用户名
+  getUserName() {
+    console.log('当前用户名为：', this.username.value)
+  }
+
+  // 更新用户名
+  setUserName() {
+    this.username.setValue('博学谷')
+  }
+}
+
+
+// 4.在模板中使用
+<input type="text" [formControl]="username">
+
+
+
+```
 
 
