@@ -445,4 +445,47 @@ export class AppComponent {
 
 ```
 
+表单校验
 
+```ts
+// 导入表单控件
+import { FormControl, Validators } from '@angular/forms'
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent implements OnInit {
+  // Validators.required 表示必填项
+  // username = new FormControl('', [Validators.required])
+
+  // 验证规则: 要求最少长度为3
+  // username = new FormControl('', [Validators.minLength(3)])
+
+  username = new FormControl('', [Validators.maxLength(6)])
+
+  ngOnInit() {
+    // console.log(this.username)
+    // // 如果有required错误，就返回true
+    // // 如果没有required错误，就返回false
+    // console.log(this.username.hasError('required'))
+  }
+}
+
+
+```
+```html
+<div>
+  <label>
+    用户名：
+    <input type="text" [formControl]="username">
+  </label>
+  <!-- <p *ngIf="username.errors && username.errors.required">用户名为必填项</p> -->
+  <!-- <p *ngIf="username.dirty && username.errors?.required">用户名为必填项</p> -->
+  <!-- <p *ngIf="username.dirty && username.hasError('required')">用户名为必填项</p> -->
+
+  <!-- <p *ngIf="username.dirty && username.hasError('minlength')">用户名密码长度不能少于3位</p> -->
+
+  <p *ngIf="username.dirty && username.hasError('maxlength')">用户名密码长度不能大于6位</p>
+</div>
+```
