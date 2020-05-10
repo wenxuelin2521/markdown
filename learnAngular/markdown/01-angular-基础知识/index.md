@@ -409,6 +409,7 @@ const appRoutes: Routes = [
 ## 表单
 ### 模板驱动表单（基于模板语法`[{ngModel}]`）
 ### 响应式表单
+基本使用方法
 ```ts
 // 1.在 module中导入响应式表单模块
 import {ReactiveFformsModule} from '@angular/forms'
@@ -445,7 +446,7 @@ export class AppComponent {
 
 ```
 
-表单校验
+内置表单校验
 
 ```ts
 // 导入表单控件
@@ -487,5 +488,43 @@ export class AppComponent implements OnInit {
   <!-- <p *ngIf="username.dirty && username.hasError('minlength')">用户名密码长度不能少于3位</p> -->
 
   <p *ngIf="username.dirty && username.hasError('maxlength')">用户名密码长度不能大于6位</p>
+</div>
+```
+
+自定义校验
+```ts
+// module中导入表单模块
+// ...
+
+// 组件中导入表单空间 Formcontrol , AbstractControl
+
+import {FormControl , AbstractControl } from '@angular/forms'
+
+@Component({
+  // ...
+})
+
+export class AppComponet{
+  username = new FormControl('' , [this.customValidate])
+
+  customValidate(control:AbstractControl){
+    if (/^[a-z]{3,6}$/.test(control.value)) {
+      // 成功 返回 null
+      return null
+    }
+
+    // 失败 返回 错误对象
+    return { regerror: true }
+  }
+}
+```
+```html
+<div>
+  <label>
+    用户名：
+    <input type="text" [formControl]="username">
+  </label>
+
+  <p *ngIf="username.dirty && username.hasError('regerror')">用户名为小写字母,长度为3到6位</p>
 </div>
 ```
