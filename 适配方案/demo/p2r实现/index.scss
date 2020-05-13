@@ -1,0 +1,17 @@
+// 假设设计库宽度 为750，j将设计图切成10份
+@function p2r($size) {
+    @return $size / 75 * 1rem;
+}
+// 从设计图中量取到的的box1为 100px * 100px
+.box1 {
+    // 实际宽高
+    // width: 100px;
+    // height: 120px;
+    // background-color: orange;
+
+    // 转化成rem
+    width: p2r(100);
+    height: p2r(120);
+    background-color: cyan;
+
+}
