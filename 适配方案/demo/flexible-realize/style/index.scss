@@ -1,5 +1,21 @@
-.box1{
+.box1 {
     width: 100px;
-    height: 100px;
+    height: 120px; /*px*/
     background-color: cyan;
+    font-size: 28px; /*px*/
+    border: 1px solid #ddd; /*no*/
 }
+
+// 测试自动前缀 begin
+input::placeholder {
+    color: gray;
+}
+
+
+@media (min-resolution: 2dppx) {
+    .image {
+        background-color: red;
+    }
+}
+
+// 测试自动前缀 end

@@ -1,0 +1,33 @@
+.box1 {
+  width: 1.333333rem;
+  height: 1.333333rem;
+  background-color: cyan;
+  font-size: 0.373333rem;
+  border: 0.013333rem solid #ddd;
+}
+
+input::-webkit-input-placeholder {
+  color: gray;
+}
+
+input::-moz-placeholder {
+  color: gray;
+}
+
+input:-ms-input-placeholder {
+  color: gray;
+}
+
+input::-ms-input-placeholder {
+  color: gray;
+}
+
+input::placeholder {
+  color: gray;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+  .image {
+    background-color: red;
+  }
+}

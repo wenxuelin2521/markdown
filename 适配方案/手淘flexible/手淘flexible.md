@@ -28,7 +28,7 @@
  -->
 ```
 
-# lib-flexible
+# 使用postcss 和 lib-flexible 实现
 
 `lib-flexible`是一个 h5 适配方案的一个库
 使用方法：
@@ -41,15 +41,33 @@
 <script src="./flexible/build/flexible.debug.js"></script>
 ```
 
-- JS执行之后，会给`html`标签添加一个`data-dpr`属性和`font-size`样式
+- JS 执行之后，会给`html`标签添加一个`data-dpr`属性和`font-size`样式
 
-- 把视觉稿中的px转换成rem
-  + CSSREM插件
-  + less\sass\postcss这样的处理器
-  + PostCSS(px2rem)工具
+- 把视觉稿中的 px 转换成 rem
+
+  - CSSREM 插件
+  - less\sass\postcss 这样的处理器
+  - PostCSS(px2rem)工具
+
+  关于postcss 使用：
+
+  1. 安装依赖`postcss-loader` `autoprefixer` `postcss-px2rem`
+  2. webpack->module 配置中在`css-loader`右侧添加`postcss-loader`
+  3. 项目根目录中添加配置文件`postcss.config.js`
+
+  ```js
+  module.exports = {
+    plugins: [
+      require("autoprefixer"), // 自动添加前缀
+      require("postcss-px2rem")({ // 配置px转rem
+        remUnit: 75
+      })
+    ]
+  }
+  ```
 
 - 文本字号不建议使用`rem`
 
+<img src="./img/手淘团队适配写作模式.png" alt="手淘团队适配写作模式">
 
-
-
+注：[总结来自于](https://github.com/amfe/article/issues/17)
