@@ -87,3 +87,6 @@ funCreate(obj){
 # 10.js对字符串去空（前后空格）
 
 # 11.原生dom操作（增删改移动）
+
+# 12.浮点数精度问题
+https://blog.csdn.net/helloxiaoliang/article/details/72723387
