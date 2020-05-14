@@ -89,4 +89,8 @@ funCreate(obj){
 # 11.原生dom操作（增删改移动）
 
 # 12.浮点数精度问题
+浮点数做数学运算的时候，会出现一些问题：
+```js
+0.1 + 0.2 = 0.30000000000000004
+```
 https://blog.csdn.net/helloxiaoliang/article/details/72723387

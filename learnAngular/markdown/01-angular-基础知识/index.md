@@ -412,7 +412,7 @@ const appRoutes: Routes = [
 基本使用方法
 ```ts
 // 1.在 module中导入响应式表单模块
-import {ReactiveFformsModule} from '@angular/forms'
+import {ReactiveFormsModule} from '@angular/forms'
 // 2.配置为当前模块的依赖项
 @NgModule({
   declarations:[AppComponent],
@@ -434,7 +434,7 @@ export class AppComponent {
 
   // 更新用户名
   setUserName() {
-    this.username.setValue('博学谷')
+    this.username.setValue('张三')
   }
 }
 
