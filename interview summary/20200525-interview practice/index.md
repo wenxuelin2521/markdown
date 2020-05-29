@@ -1,5 +1,39 @@
 >  https://github.com/Advanced-Frontend/Daily-Interview-Question 
 
+
+- 如何模拟实现Array.prototype.splice
+splice()接受参数，start delcount addList
+```js
+Array.prototype._splice = function (start, deleteCount, ...addList) {
+    if (start < 0) {
+        if (Math.abs(start) > this.length) {
+            start = 0
+        } else {
+            start += this.length
+        }
+    }
+
+    if (typeof deleteCount === 'undefined') {
+        deleteCount = this.length - start
+    }
+
+    const removeList = this.slice(start, start + deleteCount)
+
+    const right = this.slice(start + deleteCount)
+
+    let addIndex = start
+    addList.concat(right).forEach(item => {
+        this[addIndex] = item
+        addIndex++
+    })
+    this.length = addIndex
+
+    return removeList
+}
+```
+
+
+
 - 第159题：实现Promise.retry，成功后resoleve结果，失败后重试，尝试超过一定次数才真正的reject
 ```js
 Promise.retry = function(promFn , resolve1 , reject1 , max = 2){
