@@ -1,7 +1,37 @@
 >  https://github.com/Advanced-Frontend/Daily-Interview-Question 
 
 
-- 如何模拟实现Array.prototype.splice
+- 第156题：求最终letf,right的宽度
+```html
+<div class="container">
+    <div class="left"></div>
+    <div class="right"></div>
+</div>
+
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+  .container {
+    width: 600px;
+    height: 300px;
+    display: flex;
+  }
+  .left {
+    flex: 1 2 300px;
+    background: red;
+  }
+  .right {
+    flex: 2 1 200px;
+    background: blue;
+  }
+</style>
+```
+
+- 第157题：浏览器缓存ETag里的值怎么生成的
+
+- 第158题：如何模拟实现Array.prototype.splice
 splice()接受参数，start delcount addList
 ```js
 Array.prototype._splice = function (start, deleteCount, ...addList) {
