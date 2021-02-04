@@ -522,6 +522,10 @@ updateChildren (parentElm, oldCh, newCh) {
 
 <img src="./images/diff算法之updateChildren.png">
 
+### 5.vue中key的作用
+- 不加key，只会做四种匹配，如果中间有重复不会去复用
+- 不加key，那么vue会选择复用节点(Vue的就地更新策略),导致之前节点的状态被保留下来，会产生一系列的bug
+
 # 五、vue的生命周期
 正常情况下8个钩子：
 - beforeCreate
