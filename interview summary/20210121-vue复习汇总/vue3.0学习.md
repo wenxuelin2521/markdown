@@ -1,4 +1,4 @@
-# vue3.0简单学习
+# vue3.0简单使用学习
 
 ## 参考文章
 - [官方文档](https://v3.vuejs.org/)
@@ -62,3 +62,243 @@ $ npm run dev
 
 
 ## 语法差异
+
+1. `template`几乎无差别
+2. `style`几乎无差别
+3. `script`区别：
+(1) 使用了`setup`函数：`setup`函数在vue3.x中是一个非常重要的函数，它的执行时机是`beforeCreate`之后和`created`之前，很多代码都必须写在这个函数中，并且如果要在template中使用，那么就必须在`setup`中return出去。
+(2) data
+```js
+// vue2.x中
+data(){
+    return {
+        //...
+    }
+}
+
+// vue3.x中
+import { reactive , toRefs } from "vue";
+setup() {
+  const state = reactive({
+    msg1:'hello',
+    msg2:'world'
+  })
+
+  return{
+    ...toRefs(state)
+  }
+}
+
+```
+
+(3) methods
+```js
+// vue2.x中
+methods:{
+    // 方法
+}
+// vue3.x中
+setup() {
+  const state = reactive({
+    currentTime:new Date().getTime()
+  })
+  const editTime = ()=>{
+    console.log('editTime')
+    state.currentTime = new Date().getTime()
+  }
+  return{
+    ...toRefs(state),
+    editTime
+  }
+}
+```
+
+(4) computed
+```js
+// 从vue中引入computed
+import { reactive , toRefs  , computed } from "vue";
+// 第一种使用方式：直接写在setup函数上
+setup(){
+    const state = reactive({
+        count:0
+    })
+    const sum = computed(() => { return state.count * 2})
+    return {
+        ...toRefs(state),
+        sum
+    }
+}
+
+// 第二种使用方式：写在state中
+setup(){
+    const state = reactive({
+        count:0,
+        sum : computed(() => { return state.count * 2})
+    })
+    return {
+        ...toRefs(state),
+    }
+}
+
+```
+
+(5) 生命周期
+与2.x对比主要是在前面加了on：onMounted、onBeforeUnmount...
+```js
+// 从vue中引入
+import {onMounted} from "vue"
+
+// 写在setup函数中
+export default {
+    setup(){
+        onMounted(() => {
+            console.log('onMounted')
+        })
+    }
+}
+```
+(6) 组件传值
+使用`provide`和`inject`，都要写在setup函数中
+```js
+// 父子组件分别引入provide和inject
+import { provide , inject } from 'vue'
+
+// 父组件传值
+setup(){
+    provide(key , value)
+}
+
+// 子组件接收
+setup(){
+    const keyName = inject(key , default)
+    const state = reactive({
+        keyName
+    })
+    return {
+        ...toRefs(state)
+    }
+}
+```
+
+
+
+(7) 路由
+- 路由配置
+```js
+// 从`vue-router`包中按需导入createRouter , createWebHashHistory等方法
+// 通过routes配置路由链接
+// 最后导出
+
+import { createRouter , createWebHashHistory} from 'vue-router'
+
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes:[
+    {path:"/" , name:"Home" , component:() => import('@/views/Home.vue')},
+    {path:"/about" , name:"About" , component:()=>import("@/views/About.vue")}
+  ]
+})
+
+export default router
+
+```
+
+- 编程式导航
+```js
+import { useRouter } from "vue-router"
+export default {
+    setup(){
+        const router = useRouter()
+        const go = () => {
+            router.push({
+                path:'/about',
+                query:{
+                    id:123
+                }
+            })
+        }
+        return {
+            go
+        }
+    }
+}
+```
+
+- 路由参数获取
+```js
+import {useRoute} from "vue-router"
+export default {
+  name: "about",
+  setup(){
+    const route = useRoute()
+    onMounted(() => {
+      console.log(route.query)
+    })
+  }
+};
+```
+
+(8) vuex
+
+- 配置
+从vuex中导入createStore
+通过createStore进行配置
+导出createStore函数的返回
+
+```js
+import { createStore } from 'vuex'
+
+export default createStore({
+  state: {
+    count:10
+  },
+  getters:{
+    total(state){
+      return state.count *2
+    }
+  },
+  mutations: {
+    SET_COUNT(state , value){
+      state.count = value
+    }
+  },
+  actions: {
+  },
+  modules: {
+  }
+})
+
+```
+
+- 使用
+```js
+import {useStore} from "vuex"
+
+export default {
+    setup(){
+        const sotre = useStore()
+        const changeCount = () => {
+            store.commit('SET_COUNT' , store.state.count+1)
+            console.log(store.state.count , store.getters.total)
+        }
+
+        return {
+            changeCount
+        }
+    }
+}
+```
+
+4. 其他：
+(1) setup函数式vue3.x中非常重要的一部分
+(2) vue2.x和3.x的语法可以共存
+(4) 很多之前直接写在export default中的内容，现在大部分都要写在setup函数中
+(5) 很多用到的内容比如：reactive、toRefs、computed、onMounted都需要从vue包中导入
+
+
+## 完成小案例
+使用豆瓣的api，完成豆瓣电影的几个页面
+
+1. 首页
+2. 列表页
+3. 详情页
