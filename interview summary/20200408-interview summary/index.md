@@ -81,6 +81,7 @@ funCreate(obj){
 # 7.html5和css3新特性
 
 # 8.cookie、localstorage、sessionstorage
+<img src="./image/cookie-sessionStroage-localStroage.jpg" style="zoom:50%;">
 
 # 9.统计字符次数
 

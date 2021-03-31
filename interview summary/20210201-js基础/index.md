@@ -16,7 +16,7 @@
 
 ## Set和Map
 - ES6提供了新的数据结构`Set`。类似于数组，但是成员的值都是唯一的，没有重复的值。
-利用`Set`和`Array.from`结合或者`Set`和结构运算符结合可以实现数组去重。
+利用`Set`和`Array.from`结合或者`Set`和解构运算符结合可以实现数组去重。
 Set实例拥有的属性：
     + `Set.prototype.constructor`:默认指向`Set`构造函数
     + `Set.prototype.size`:返回`Set`实例成员总数
@@ -141,3 +141,19 @@ element.addEventListener(event , function , useCapture)
 - 阻止默认事件
     + event.preventDefault()
     + `return false`
+
+## 垃圾回收
+垃圾回收：找出那些不再继续使用的变量，然后释放其占用的内存。
+为此垃圾回收器会按照固定的时间间隔（或代码执行中预定的收集时间），周期性的执行这一个操作。
+（1）标记清除
+先把环境中所有都加上标记，再把环境中引用到的变量去除标记。剩下的就是没用的了。
+（2）引用计数
+跟踪每个值被引用的次数，清除引用次数为0的变量。会有**循环引用的问题**，循环引用如果大量存在就会导致内存泄露。
+
+# Object的常考的API总结
+
+- Object.create(obj)
+创建一个新的对象，使用传入的obj作为新创建对象的`__proto__`
+
+
+# Array的常考API总结

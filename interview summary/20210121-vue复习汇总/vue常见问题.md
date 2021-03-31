@@ -37,7 +37,7 @@ this.$eventBus.$emit("事件名" , "传给订阅事件的参数")
 
 
 ## 方法三、vuex和localStorage
-vues生态中的一环，不做解释。
+vue生态中的一环，不做解释。
 
 
 ## 方法四、$attrs和\$listeners

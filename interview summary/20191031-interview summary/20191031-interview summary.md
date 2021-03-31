@@ -16,7 +16,7 @@
 
 css盒子模型有两种：
 
-IE盒子模型:width = content + padding + border
+IE盒子模型（怪异盒子）:width = content + padding + border
 
 W3C标准盒子模型：width = content
 
