@@ -41,16 +41,27 @@
   npm install webpack@4.44.2 webpack-cli -D
   ```
 
-- webpack4.0之后可以实现0配置打包构建，但开发中还是使用配置文件来进行打包构建
+- webpack4.0之后可以实现0配置打包构建，但开发中还是使用配置文件来进行打包构建，所以创建配置文件`webpack.config.js`
+  ```js
+  const path = require('path')
+  
+  module.exports = {
+      mode : 'development' , // 默认取值为production ，区别就是是否进行压缩混淆
+      // 入口文件配置
+      entry : './src/index.js',
+      
+      // 输出文件配置
+      output : {
+          path : path.join(__dirname , 'dist') , // 输出路径规定必须是绝对路径
+          filename : 'bundle.js' , // 输出文件名字
+      }
+  
+  }
+  ```
   
 
-
-
-
-
-
-
-
+- 将`webpack`命令配置在`package.json`的脚本中`"build": "webpack"`
+- 运行命令`npm run build`
 
 
 
