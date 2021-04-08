@@ -1,5 +1,8 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
+
 
 module.exports = {
     mode : 'development' , // 默认取值为production ，区别就是是否进行压缩混淆
@@ -19,6 +22,7 @@ module.exports = {
         // open : true, // 打开浏览器
         hot : true // 开启热更新
     },
+    // devtool: 'cheap-module-eval-source-map', //开发环境下使用
 
     module : {
         rules : [
@@ -40,7 +44,14 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename : 'index.html',
             template : './src/template.html'
-        })
+        }),
+        new CleanWebpackPlugin(),
+
+        // new CopyPlugin({
+        //     patterns : [
+        //         { from : path.join(__dirname , './src/assets') , to : 'assets'}
+        //     ]
+        // })
     ]
 
 }

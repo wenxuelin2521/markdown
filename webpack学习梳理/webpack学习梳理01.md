@@ -173,8 +173,42 @@ module: {
 ### 7. source map的使用
 `devtool`可以帮助我们将编译后的代码映射到源代码，不同的dev-tool会影响到构建和重新构建的速度。
 种类太多，这里就不再详述，感兴趣可以自己去看。这里选择使用`cheap-module-eval-source-map`
+```js
+module.exports = {
+  devtool: 'cheap-module-eval-source-map'
+}
+```
 
 ### 8. 基础插件
+
+- `clean-webpack-plugin`:用于打包静态资源的时候自动清除`dist`目录
+```shell
+npm install clean-webpack-plugin --save-dev
+# 此处使用的版本号是clean-webpack-plugin@3.0.0
+```
+
+```js
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+
+module.exports = {
+  plugins : [
+    new CleanWebpackPlugin()
+  ]
+}
+
+```
+- `copy-webpack-plugin`:拷贝插件，将指定文件从源拷贝到目标
+```shell
+npm install copy-webpack-plugin --save-dev
+# 此处使用的版本号是copy-webpack-plugin@8.1.1
+```
+
+```js
+```
+
+
+- `BannerPlugin`:webpack内置插件，用于给打包的JS文件添加上版权信息
+
 
 ## webpack 高级配置
 
