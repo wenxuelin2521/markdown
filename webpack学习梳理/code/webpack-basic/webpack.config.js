@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const copyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 
 module.exports = {
@@ -47,11 +49,12 @@ module.exports = {
         }),
         new CleanWebpackPlugin(),
 
-        // new CopyPlugin({
-        //     patterns : [
-        //         { from : path.join(__dirname , './src/assets') , to : 'assets'}
-        //     ]
-        // })
+        new CopyPlugin([
+            { from : path.join(__dirname , './src/assets') , to : 'assets'}
+        ]),
+
+        new webpack.BannerPlugin('good good study!')
+        
     ]
 
 }

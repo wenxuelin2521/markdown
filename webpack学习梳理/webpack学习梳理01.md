@@ -168,7 +168,7 @@ module: {
 }
 ```
 
-### 6. 处理高级 javascript 语法 ES6/7/8
+### 6. 使用babel处理高级 javascript 语法 ES6/7/8
 
 ### 7. source map的使用
 `devtool`可以帮助我们将编译后的代码映射到源代码，不同的dev-tool会影响到构建和重新构建的速度。
@@ -200,14 +200,22 @@ module.exports = {
 - `copy-webpack-plugin`:拷贝插件，将指定文件从源拷贝到目标
 ```shell
 npm install copy-webpack-plugin --save-dev
-# 此处使用的版本号是copy-webpack-plugin@8.1.1
+# 此处使用的版本号是copy-webpack-plugin@5.0.3
 ```
 
 ```js
+new CopyPlugin([
+  { from : path.join(__dirname , './src/assets') , to : 'assets'}
+])
 ```
 
 
 - `BannerPlugin`:webpack内置插件，用于给打包的JS文件添加上版权信息
+```js
+new webpack.BannerPlugin('good good study!')
+```
+
+
 
 
 ## webpack 高级配置
