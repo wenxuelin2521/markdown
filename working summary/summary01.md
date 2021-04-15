@@ -26,3 +26,14 @@ $("#service").on("click", function() {
 	document.activeElement.blur();
 })
 ```
+
+# 4. 文本框内按enter键，禁止回车
+```js
+keydown(e){ // 一定是keydown事件，keyup还是会先执行换行
+    if(e.keyCode == 13){
+      // do something......
+      e.returnValue = false;
+      return false;
+    }
+  }
+```
