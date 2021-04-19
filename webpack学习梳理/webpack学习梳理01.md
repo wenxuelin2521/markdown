@@ -169,6 +169,8 @@ module: {
 ```
 
 ### 6. 使用babel处理高级 javascript 语法 ES6/7/8
+关于`babel`，可以阅读《[不容错过的 Babel7 知识](https://juejin.cn/post/6844904008679686152)》
+
 
 ### 7. source map的使用
 `devtool`可以帮助我们将编译后的代码映射到源代码，不同的dev-tool会影响到构建和重新构建的速度。
