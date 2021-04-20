@@ -1,17 +1,6 @@
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
-const fn = () => {
-    console.log('a+b+c');
-};
-
-const isHas = [1, 2, 3].includes(2)
-
-const p = new Promise((resolve, reject) => {
-    resolve(100)
-})
-
-
 class Point {
     constructor(x, y) {
         this.x = x;
