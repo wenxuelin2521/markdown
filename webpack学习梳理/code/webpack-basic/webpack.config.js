@@ -39,6 +39,11 @@ module.exports = {
                     name:'[name]-[hash].[ext]'
                 }
             }]},
+            {
+                test: /\.js$/,
+                use: ['babel-loader'],
+                exclude: /node_modules/ //排除 node_modules 目录
+            }
         ]
     },
 

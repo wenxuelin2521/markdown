@@ -171,6 +171,27 @@ module: {
 ### 6. 使用babel处理高级 javascript 语法 ES6/7/8
 关于`babel`，可以阅读《[不容错过的 Babel7 知识](https://juejin.cn/post/6844904008679686152)》
 
+安装`babel-loader`,`@babel/core`,`@babel/preset-env`
+其他babel插件根据自己需求自己去添加就行
+```shell
+npm install babel-loader @babel/core @babel/preset-env --save-dev
+```
+
+webpack.config.js中给loader添加配置
+```js
+{
+    test: /\.js$/,
+    use: ['babel-loader'],
+    exclude: /node_modules/ //排除 node_modules 目录
+}
+```
+项目根目录新建配置文件.babelrc
+```json
+{
+    "presets": ["@babel/preset-env"],
+    "plugins": []
+}
+```
 
 ### 7. source map的使用
 `devtool`可以帮助我们将编译后的代码映射到源代码，不同的dev-tool会影响到构建和重新构建的速度。
@@ -218,10 +239,3 @@ new webpack.BannerPlugin('good good study!')
 ```
 
 
-
-
-## webpack 高级配置
-
-## webpack 性能优化
-
-## webpack 原理
