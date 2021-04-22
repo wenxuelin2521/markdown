@@ -79,12 +79,17 @@ plugins : [
 - webpack.dev.js（定义开发配置）
 
 步骤：
-1. 将公用配置放在base中，不同的配置各自放入prod或dev文件中
-2. 然后在dev和prod中使用**webpack-merge**把自己的配置和base进行合并后导出
-3. 修改package.json中的脚本参数，通过`--config`指定配置文件
+1. 安装依赖`npm install webpack-merge --save-dev`
+2. 将公用配置放在base中，不同的配置各自放入prod或dev文件中
+3. 然后在dev和prod中使用**webpack-merge**把自己的配置和base进行合并后导出
+4. 修改package.json中的脚本参数，通过`--config`指定配置文件
 
 
 ## 环境变量
+
+使用webpack内置插件`DefinePlugin`可以定义环境变量
+
+
 
 
 ## devServer解决跨域

@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack --config ./webpack/webpack.prod.js",
     "watch": "webpack --watch",
     "dev": "npx webpack-dev-server --hot --open --port 8000",
-    "devServer": "webpack-dev-server"
+    "devServer": "webpack-dev-server --config ./webpack/webpack.dev.js"
   },
   "keywords": [],
   "author": "",
@@ -32,7 +32,8 @@
     "url-loader": "^4.1.1",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
   },
   "dependencies": {
     "jquery": "^3.6.0"
